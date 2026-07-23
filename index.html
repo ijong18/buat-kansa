@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Untuk Kansa 🤍</title>
+
+<style>
+
+body{
+margin:0;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#000,#800080);
+font-family:Arial;
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+.box{
+width:85%;
+background:rgba(255,255,255,0.15);
+padding:25px;
+border-radius:25px;
+box-shadow:0 0 30px pink;
+}
+
+h1{
+color:#ffb6e6;
+}
+
+button{
+background:#ff4fa3;
+color:white;
+border:none;
+padding:15px 30px;
+border-radius:30px;
+font-size:18px;
+margin:10px;
+}
+
+#surat{
+display:none;
+animation:muncul 2s;
+}
+
+.foto{
+width:250px;
+height:250px;
+object-fit:cover;
+border-radius:20px;
+box-shadow:0 0 25px pink;
+}
+
+p{
+font-size:17px;
+line-height:1.8;
+}
+
+@keyframes muncul{
+from{
+opacity:0;
+transform:translateY(50px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.hati{
+position:fixed;
+top:-10px;
+font-size:25px;
+animation:turun 5s linear infinite;
+}
+
+@keyframes turun{
+from{
+transform:translateY(0);
+}
+to{
+transform:translateY(110vh);
+}
+}
+
+.kembang{
+position:fixed;
+font-size:40px;
+animation:meledak 1s ease-out;
+}
+
+@keyframes meledak{
+0%{
+transform:scale(0);
+opacity:1;
+}
+100%{
+transform:scale(3);
+opacity:0;
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<div id="awal">
+
+<h1>💌 Surat Untuk Kansa</h1>
+
+<p>
+Ada sebuah pesan kecil yang ingin aku sampaikan 🤍
+</p>
+
+<div id="countdown">
+Menuju 00:00 WIB<br>
+<span id="waktu">00:00:00</span>
+</div>
+
+<button id="buka" onclick="bukaSurat()" style="display:none;">
+Buka Surat 💌
+</button>
+
+</div>
+
+<div id="petasan"></div>
+
+<audio id="musik" loop>
+<source src="lagu1.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="musik2">
+<source src="lagu3.mp3" type="audio/mpeg">
+</audio>
+
+
+<div id="surat">
+
+<h1>🎂 Happy Birthday 🎂</h1>
+
+<h2>Khansa Phalosa Jannati</h2>
+
+<p>
+18 Agustus 2026 🤍
+</p>
+
+<img id="foto" src="kansa.jpg" class="foto">
+
+<br>
+
+<button onclick="laguKedua()">
+🎵 Pencet lagu untuk kamu 🤍
+</button>
+
+<p id="teks"></p>
+
+<button id="akhir" onclick="pesanAkhir()" style="display:none;">
+Terima kasih sudah membaca 🤍
+</button>
+
+</div>
+
+<script>
+
+let foto = [
+"kansa.jpg",
+"kansa2.jpg",
+"kansa3.png",
+"kansa4.jpg",
+"kansa5.jpg",
+"kansa6.jpg",
+];
+
+let i = 0;
+
+setInterval(()=>{
+
+i++;
+
+if(i >= foto.length){
+i = 0;
+}
+
+document.getElementById("foto").src = foto[i];
+
+},3000);
+
+
+
+function bukaSurat(){
+
+document.getElementById("awal").style.display="none";
+
+document.getElementById("surat").style.display="block";
+
+document.querySelectorAll(".kembang").forEach(e=>e.remove());
+
+document.getElementById("musik").play();
+
+ketik();
+
+}
+
+
+
+setInterval(()=>{
+
+let h=document.createElement("div");
+
+h.className="hati";
+
+h.innerHTML="❤️";
+
+h.style.left=Math.random()*100+"%";
+
+document.body.appendChild(h);
+
+
+setTimeout(()=>{
+
+h.remove();
+
+},5000);
+
+
+},300);
+
+
+
+let tulisan = `Untuk Kansa 🤍
+
+Happy birthday yaa, Kansa 🎂
+dan selamat juga buat graduation-nya 🎓
+
+Walaupun kita udah lama banget ga kontak,
+aku tetap ingin ngucapin ini buat kamu.
+
+Semoga di umur yang baru ini kamu selalu diberikan kesehatan, kebahagiaan, dan dikelilingi orang-orang baik.
+
+Semoga semua cita-cita kamu bisa tercapai dan semua perjuangan kamu berjalan lancar.
+
+Makasih karena dulu pernah jadi bagian dari cerita yang sampai sekarang masih aku ingat.
+
+Maaf kalau dulu ada kesalahan yang pernah bikin kamu kecewa.
+
+Aku cuma ingin kamu tahu kalau kamu pernah jadi seseorang yang berarti buat aku.
+
+Bahagia selalu ya, Kansa 🤍
+
+"You are always in my heart" 🤍
+
+From: Ijong ❤️`;
+
+let angka = 0;
+
+
+function ketik(){
+
+if(angka < tulisan.length){
+
+document.getElementById("teks").innerHTML += tulisan.charAt(angka).replace(/\n/g,"<br>");
+
+angka++;
+
+setTimeout(ketik,50);
+
+}else{
+
+document.getElementById("akhir").style.display="block";
+
+}
+
+}
+
+
+
+function laguKedua(){
+
+document.getElementById("musik").pause();
+
+document.getElementById("musik2").play();
+
+}
+
+
+
+function petasan(){
+
+for(let i=0;i<20;i++){
+
+let k=document.createElement("div");
+
+k.className="kembang";
+
+k.innerHTML="🎆";
+
+k.style.left=Math.random()*100+"%";
+
+k.style.top=Math.random()*100+"%";
+
+document.body.appendChild(k);
+
+
+setTimeout(()=>{
+
+k.remove();
+
+},1000);
+
+}
+
+}
+
+
+
+let target = new Date();
+
+target.setSeconds(target.getSeconds()+10);
+
+
+
+function hitungMundur(){
+
+let sekarang = new Date();
+
+let selisih = target - sekarang;
+
+
+let menit = Math.floor((selisih % (1000*60*60))/(1000*60));
+
+let detik = Math.floor((selisih % (1000*60))/1000);
+
+
+document.getElementById("waktu").innerHTML =
+"00:" + String(menit).padStart(2,"0") + ":" + String(detik).padStart(2,"0");
+
+
+
+if(selisih <= 0){
+
+document.getElementById("countdown").style.display="none";
+
+document.getElementById("buka").style.display="block";
+
+petasan();
+
+}
+
+}
+
+
+setInterval(hitungMundur,1000);
+
+hitungMundur();
+
+
+
+function pesanAkhir(){
+
+document.getElementById("akhir").innerHTML=
+
+`
+<p>Kamu mau temuin aku ga sebelum kamu punya cerita baru? 🤍</p>
+
+<button onclick="mau()">Mau 🤍</button>
+
+<button onclick="hapusEngga()">Enggak</button>
+`;
+
+}
+
+
+
+function mau(){
+
+alert("Makasih udah mau 🤍");
+
+}
+
+
+
+function hapusEngga(){
+
+event.target.remove();
+
+}
+
+
+</script>
+
+
+</body>
+</html>
